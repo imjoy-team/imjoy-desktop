@@ -1,0 +1,13 @@
+// import index.scss of the active theme
+@import 'owd-theme-gnome/variants/adwaita-dark/index.scss';
+
+body {
+  background: $owd-background;
+  color: $owd-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $owd-font-title;
+}
+
+// put here your custom theme styles

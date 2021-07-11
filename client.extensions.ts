@@ -1,4 +1,4 @@
-import desktopConfig from "@owd-client/core/src/modules/desktop/linux/gnome/desktop.config"
+import desktopConfig from "owd-theme-gnome/desktop.config"
 
 // routes
 import routesMain from './src/pages/main/routes'
@@ -11,8 +11,8 @@ import DebugModule from "@owd-client/core/src/modules/app/debug";
 import installImJoy from "~/plugins/imjoy";
 
 export default {
-  app: {
-    modules: [
+  modules: {
+    app: [
       //AboutModule,
       //DebugModule
     ]
@@ -27,8 +27,4 @@ export default {
   plugins: [
     installImJoy
   ],
-
-  store: {
-    modules: {}
-  }
 }
