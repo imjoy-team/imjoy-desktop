@@ -30,17 +30,6 @@ export default async function installImJoy() {
     return response.data.plugins.filter((plugin: any) => plugin.type === 'window')
   })
 
-  for (const plugin of windowPlugins) {
-    desktop.store.commit('core/launcher/ADD', {
-      title: plugin.name,
-      icon: 'mdi-puzzle',
-      category: 'plugins',
-      callback: async () => {
-        await imjoy.api.createWindow({src: 'https://kaibu.org', name: 'Kaibu'})
-      }
-    })
-  }
-
   await imjoy.start({workspace: 'default'})
     .then(() => {
       console.log('ImJoy started')
@@ -77,6 +66,17 @@ export default async function installImJoy() {
           imjoyWindowInstance.open(true)
         }
       })
+
+      // for (const plugin of windowPlugins) {
+        desktop.store.commit('core/launcher/ADD', {
+          title: "Kaibu",
+          icon: 'mdi-puzzle',
+          category: 'plugins',
+          callback: async () => {
+            await imjoy.api.createWindow({src: 'https://kaibu.org', name: 'Kaibu'})
+          }
+        })
+      // }
       
     })
     .catch((e: ErrorEvent) => console.error('Error while starting ImJoy', e))
