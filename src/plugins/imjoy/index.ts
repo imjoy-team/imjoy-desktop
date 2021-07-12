@@ -30,55 +30,55 @@ export default async function installImJoy() {
     return response.data.plugins.filter((plugin: any) => plugin.type === 'window')
   })
 
-  for (const plugin of windowPlugins) {
-    desktop.store.commit('core/launcher/ADD', {
-      title: plugin.name,
-      icon: 'mdi-puzzle',
-      category: 'plugins',
-      callback: async () => {
-
-        imjoy.event_bus.on("add_window", w => {
-          const imjoyWindowInstance = imjoyModuleApp.createWindow({
-            component: WindowImJoyPlugin,
-            name: `Window${plugin.name.replace(' ', '')}`,
-            title: plugin.name,
-            category: 'plugins',
-            icon: "mdi-puzzle",
-            size: {
-              width: 448,
-              height: 240
-            },
-            position: {
-              x: -1,
-              y: 0,
-              z: 0
-            },
-            resizable: true,
-            theme: {
-              noContentSpacing: true
-            },
-            metaData: {
-              iframeUrl: ""
-            }
-          })
-
-          const div = document.createElement('div')
-          div.id = w.id;
-          document.getElementById(`imjoy-${imjoyWindowInstance.uniqueID}`)?.appendChild(div);
-
-          if (imjoyWindowInstance) {
-            imjoyWindowInstance.open(true)
+  await imjoy.start({workspace: 'default'})
+    .then(() => {
+      console.log('ImJoy started')
+      imjoy.event_bus.on("add_window", w => {
+        const imjoyWindowInstance = imjoyModuleApp.createWindow({
+          component: WindowImJoyPlugin,
+          name: `Window${w.name.replace(' ', '')}`,
+          title: w.name,
+          category: 'plugins',
+          icon: "mdi-puzzle",
+          size: {
+            width: 448,
+            height: 240
+          },
+          position: {
+            x: -1,
+            y: 0,
+            z: 0
+          },
+          resizable: true,
+          theme: {
+            noContentSpacing: true
+          },
+          metaData: {
+            iframeUrl: ""
           }
         })
 
-        await imjoy.api.createWindow({src: 'https://kaibu.org', name: 'Kaibu'})
+        const div = document.createElement('div')
+        div.id = w.id;
+        document.getElementById(`imjoy-${imjoyWindowInstance.uniqueID}`)?.appendChild(div);
 
-      }
+        if (imjoyWindowInstance) {
+          imjoyWindowInstance.open(true)
+        }
+      })
+
+      // for (const plugin of windowPlugins) {
+        desktop.store.commit('core/launcher/ADD', {
+          title: "Kaibu",
+          icon: 'mdi-puzzle',
+          category: 'plugins',
+          callback: async () => {
+            await imjoy.api.createWindow({src: 'https://kaibu.org', name: 'Kaibu'})
+          }
+        })
+      // }
+      
     })
-  }
-
-  await imjoy.start({workspace: 'default'})
-    .then(() => console.log('ImJoy started'))
     .catch((e: ErrorEvent) => console.error('Error while starting ImJoy', e))
 }
 
