@@ -31,6 +31,7 @@ jobs:
       with:
         name: built-output
         path: ./dist
+    - run: echo "desktop.imjoy.io" > ./dist/CNAME
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
