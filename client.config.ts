@@ -1,6 +1,9 @@
 export default {
   debug: false,
-
+  ui: {
+    de: 'linux/gnome',
+    theme: 'adwaita-dark',
+  },
   // sse integration
   sse: {
     enabled: false,

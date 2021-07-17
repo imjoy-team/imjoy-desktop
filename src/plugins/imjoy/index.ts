@@ -21,7 +21,7 @@ export default async function installImJoy() {
     setup(): OwdModuleAppInfo {
       return {
         name: 'imjoy',
-        singleton: true
+        singleton: true,
       }
     }
   })
@@ -31,21 +31,22 @@ export default async function installImJoy() {
   })
 
   await imjoy.start({workspace: 'default'})
-    .then(() => {
+    .then(async () => {
       console.log('ImJoy started')
-      imjoy.event_bus.on("add_window", w => {
+      imjoy.event_bus.on("add_window", async (w:Object) => {
         const imjoyWindowInstance = imjoyModuleApp.createWindow({
           component: WindowImJoyPlugin,
           name: `Window${w.name.replace(' ', '')}`,
           title: w.name,
           category: 'plugins',
           icon: "mdi-puzzle",
+          maximizable: true,
           size: {
-            width: 448,
-            height: 240
+            width: 648,
+            height: 440
           },
           position: {
-            x: -1,
+            x: 0,
             y: 0,
             z: 0
           },
@@ -57,25 +58,84 @@ export default async function installImJoy() {
             iframeUrl: ""
           }
         })
-
-        const div = document.createElement('div')
-        div.id = w.id;
-        document.getElementById(`imjoy-${imjoyWindowInstance.uniqueID}`)?.appendChild(div);
-
         if (imjoyWindowInstance) {
           imjoyWindowInstance.open(true)
         }
+
+        setTimeout(()=>{
+          const container = document.createElement('div')
+          container.id = w.window_id;
+          container.style.backgroundColor = '#ececec';
+          container.style.height = "100%";
+          container.style.width = "100%";
+          const windowElem = document.getElementById(`imjoy-${imjoyWindowInstance.uniqueID}`);
+          if(!windowElem) throw new Error("Failed to get the window element.");
+          windowElem.appendChild(container);
+        }, 0)
+   
       })
 
+      const getBase64FromUrl = async (url:string) => {
+        const data = await fetch(url);
+        const blob = await data.blob();
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(blob); 
+          reader.onloadend = () => {
+            const base64data = reader.result;   
+            resolve(base64data);
+          }
+        });
+      }
       // for (const plugin of windowPlugins) {
+        desktop.store.commit('core/notification/ADD', {
+          name: 'twitch-new-follower',
+          service: 'twitch',
+          icon: 'mdi-twitch',
+          color: '#8b58e8',
+          title: 'hacklover',
+          details: 'New follower'
+        })
+        
         desktop.store.commit('core/launcher/ADD', {
           title: "Kaibu",
+          icon: {
+            name: "kaibu",
+            size: "24px",
+            image: "https://raw.githubusercontent.com/imjoy-team/kaibu/master/public/static/img/kaibu-icon.png"
+          },
+          category: 'plugins',
+          callback: async () => {
+            const viewer = await imjoy.api.createWindow({src: "https://kaibu.org/#/app", name: "Kaibu"})
+            await viewer.view_image("https://images.proteinatlas.org/61448/1319_C10_2_blue_red_green.jpg")
+            await viewer.add_shapes([[[110, 303], [1512, 1800], [520, 2000]]], {shape_type:"polygon", edge_color:"red", name:"triangle"})
+          }
+        })
+        desktop.store.commit('core/launcher/ADD', {
+          title: "ImageJ.JS",
           icon: 'mdi-puzzle',
           category: 'plugins',
           callback: async () => {
-            await imjoy.api.createWindow({src: 'https://kaibu.org', name: 'Kaibu'})
+            await imjoy.api.createWindow({src: "https://ij.imjoy.io", name: "ImageJ.JS"})
           }
         })
+        desktop.store.commit('core/launcher/ADD', {
+          title: "elFinder",
+          icon: 'mdi-puzzle',
+          category: 'plugins',
+          callback: async () => {
+            await imjoy.api.createWindow({src: "https://fm.imjoy.io", name: "elFinder"})
+          }
+        })
+        desktop.store.commit('core/launcher/ADD', {
+          title: "ImJoy Fiddle",
+          icon: 'mdi-puzzle',
+          category: 'plugins',
+          callback: async () => {
+            await imjoy.api.createWindow({src: "https://if.imjoy.io", name: "ImJoy Fiddle"})
+          }
+        })
+
       // }
       
     })
