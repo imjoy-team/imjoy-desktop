@@ -49,6 +49,7 @@
     "@osjs/standard-theme": "^4.0.9",
     "@osjs/textpad-application": "^1.2.7",
     "hyperapp": "^1.2.10",
+    "imjoy-core": "^0.13.82",
     "typeface-roboto": "0.0.75"
   },
   "repository": {

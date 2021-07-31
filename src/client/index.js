@@ -37,6 +37,7 @@
 // https://manual.os-js.org/v3/install/
 // https://manual.os-js.org/v3/resource/official/
 //
+import * as imjoyCore from 'imjoy-core'
 
 import {
   Core,
@@ -44,10 +45,13 @@ import {
   DesktopServiceProvider,
   VFSServiceProvider,
   NotificationServiceProvider,
+  Application,
+  BasicApplication,
   SettingsServiceProvider,
   AuthServiceProvider
 } from '@osjs/client';
 
+import {EventEmitter} from '@osjs/event-emitter';
 import {PanelServiceProvider} from '@osjs/panels';
 import {GUIServiceProvider} from '@osjs/gui';
 import {DialogServiceProvider} from '@osjs/dialogs';
@@ -68,7 +72,72 @@ const init = () => {
   osjs.register(DialogServiceProvider);
   osjs.register(GUIServiceProvider);
 
-  osjs.boot();
+  osjs.boot().then(()=>{
+    const pm = osjs.make('osjs/packages');
+    const imjoy = new imjoyCore.ImJoy({
+      imjoy_api: {},
+      //imjoy config
+    });
+  
+    imjoy.start({workspace: 'default'}).then(async ()=>{
+      imjoy.event_bus.on("add_window", async (w) => {
+        const win = osjs.make('osjs/window', {
+          id: w.window_id,
+          title: w.name,
+          dimension: {
+            width: w.w*30,
+            height: w.h*30
+          }
+        })
+        win.render($content => {
+          const container = document.createElement('div');
+          container.id = w.window_id;
+          container.style.backgroundColor = '#ececec';
+          container.style.height = "100%";
+          container.style.width = "100%";
+          $content.appendChild(container);
+        });
+      })
+
+      console.log('ImJoy started');
+      const name = 'Kaibu';
+      const metadata = {
+        name,
+        type: 'application',
+        singleton: false,
+        autostart: false,
+        hidden: false,
+        icon: null,
+        category: null,
+        groups: [],
+        title: {
+          "en_EN": name
+        },
+        // A map of localized descriptions
+        description: {
+          "en_EN": name
+        },
+      };
+  
+      // const pkgs = new Packages(osjs);
+      pm.addPackages([metadata]);
+      pm.register(name, () => {
+        const proc = new Application(osjs, {
+          args: {},
+          metadata
+        });
+        imjoy.api.createWindow({
+          src: 'https://kaibu.org',
+          name: "Kaibu"
+        })
+
+        return proc
+      });
+    })
+  })
+
+
+
 };
 
 window.addEventListener('DOMContentLoaded', () => init());

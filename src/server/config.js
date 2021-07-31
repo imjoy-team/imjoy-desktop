@@ -39,6 +39,6 @@ const root = path.resolve(__dirname, '../../');
 
 module.exports = {
   root,
-  port: 8000,
+  port: 9900,
   public: path.resolve(root, 'dist')
 };
