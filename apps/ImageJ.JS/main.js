@@ -605,7 +605,7 @@ window.ipfCreateIFrame = function () {
     }
   };
 
-  ret.src = "/apps/imagej/c.html";
+  ret.src = "/apps/ImageJ.JS/c.html";
   ret.width = "0px";
   ret.height = "0px";
   ret.style.border = "0px";
@@ -769,7 +769,7 @@ function _startImageJ() {
               clipboardMode: "java",
               enablePreciseClassLoaders: true,
               disableErrorReporting: true,
-              javaProperties: ["java.protocol.handler.pkgs=com.leaningtech.handlers", "user.dir=/files", "plugins.dir=/app/apps/imagej/ij153/plugins"]
+              javaProperties: ["java.protocol.handler.pkgs=com.leaningtech.handlers", "user.dir=/files", "plugins.dir=/app/apps/ImageJ.JS/ij153/plugins"]
             });
             elm = cheerpjCreateDisplay(-1, -1, appContainer);
             _addEL = elm.addEventListener;
@@ -808,7 +808,7 @@ function _startImageJ() {
               }
             };
 
-            cheerpjRunMain("ij.ImageJ", "/app/apps/imagej/ij153/ij-1.53j.jar");
+            cheerpjRunMain("ij.ImageJ", "/app/apps/ImageJ.JS/ij153/ij-1.53j.jar");
             setupDragDropPaste(appContainer);
 
             window.openFileDialogJS = /*#__PURE__*/function () {
@@ -3289,7 +3289,7 @@ var register = function register(core, args, options, metadata) {
   function makeTray(_onclick) {
     var entry = core.make('osjs/tray', {
       title: 'ImageJ.JS',
-      icon: '/apps/imagej/assets/icons/chrome/chrome-installprocess-128-128.png',
+      icon: '/apps/ImageJ.JS/assets/icons/chrome/chrome-installprocess-128-128.png',
       onclick: function onclick() {
         _onclick();
 
@@ -3339,7 +3339,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: type, name, category, icon, singleton, title, description, files, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"type\":\"application\",\"name\":\"imagej\",\"category\":null,\"icon\":\"https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png\",\"singleton\":true,\"title\":{\"en_EN\":\"ImageJ.JS\"},\"description\":{\"en_EN\":\"ImageJ in the browser for image analysis\"},\"files\":[\"https://cjrtnc.leaningtech.com/20201217_2/loader.js\",\"main.js\",\"main.css\",\"c.html\"]}");
+module.exports = JSON.parse("{\"type\":\"application\",\"name\":\"ImageJ.JS\",\"category\":\"Science\",\"icon\":\"https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png\",\"singleton\":true,\"title\":{\"en_EN\":\"ImageJ.JS\"},\"description\":{\"en_EN\":\"ImageJ in the browser for image analysis\"},\"files\":[\"https://cjrtnc.leaningtech.com/20201217_2/loader.js\",\"main.js\",\"main.css\",\"c.html\"]}");
 
 /***/ }),
 

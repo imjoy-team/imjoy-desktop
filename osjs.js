@@ -361,7 +361,7 @@ var init = function init() {
                 autostart: false,
                 hidden: false,
                 icon: null,
-                category: null,
+                category: 'Science',
                 groups: [],
                 title: {
                   "en_EN": name
