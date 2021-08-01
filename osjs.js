@@ -205,6 +205,9 @@ __webpack_require__.r(__webpack_exports__);
       username: 'demo',
       password: 'demo'
     }
+  },
+  vfs: {
+    defaultPath: 'apps:/'
   }
 });
 
@@ -286,8 +289,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function removeMountpoint(core, name) {
+  var foundIndex = core.configuration.vfs.mountpoints.findIndex(function (mount) {
+    return mount.name === name;
+  });
+
+  if (foundIndex !== -1) {
+    core.configuration.vfs.mountpoints.splice(foundIndex, 1);
+  }
+}
+
 var init = function init() {
-  var osjs = new _osjs_client__WEBPACK_IMPORTED_MODULE_3__["Core"](_config_js__WEBPACK_IMPORTED_MODULE_8__["default"], {}); // Register your service providers
+  var osjs = new _osjs_client__WEBPACK_IMPORTED_MODULE_3__["Core"](_config_js__WEBPACK_IMPORTED_MODULE_8__["default"], {});
+  removeMountpoint(osjs, 'home');
+  removeMountpoint(osjs, 'osjs'); // Register your service providers
 
   osjs.register(_osjs_client__WEBPACK_IMPORTED_MODULE_3__["CoreServiceProvider"]);
   osjs.register(_osjs_client__WEBPACK_IMPORTED_MODULE_3__["DesktopServiceProvider"]);
