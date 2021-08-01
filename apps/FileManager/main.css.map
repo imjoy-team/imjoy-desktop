@@ -1,0 +1,1 @@
+{"version":3,"sources":["/home/anders/Projects/OS.js/packages/osjs-filemanager-application/index.scss"],"names":[],"mappings":"AAAA,2IAIM,YAAa","file":"main.css","sourcesContent":[".osjs-filemanager-minimalistic {\n  .osjs-gui-panes-inner {\n    & > div:nth-child(1),\n    & > div:nth-child(2) {\n      display: none;\n    }\n  }\n}\n"]}
