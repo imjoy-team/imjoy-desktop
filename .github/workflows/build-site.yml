@@ -24,8 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci && npm run build
-      working-directory: ./src/pacakges/imagej
+    - run: cd ./src/pacakges/imagej && npm ci && npm run build && cd ../../../
     - run: npm ci && npm run package:discover && npm run build
     - name: Get compiled imagej.js
       run: bash get-imagej.sh
