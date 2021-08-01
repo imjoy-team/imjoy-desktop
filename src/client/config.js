@@ -41,5 +41,8 @@ export default {
       username: 'demo',
       password: 'demo'
     }
+  },
+  vfs: {
+    defaultPath: 'apps:/',
   }
 };

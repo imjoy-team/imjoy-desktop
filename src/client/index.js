@@ -58,9 +58,17 @@ import {DialogServiceProvider} from '@osjs/dialogs';
 import config from './config.js';
 import './index.scss';
 
+function removeMountpoint(core, name) {
+  const foundIndex = core.configuration.vfs.mountpoints.findIndex(mount => mount.name === name)
+  if (foundIndex !== -1) {
+    core.configuration.vfs.mountpoints.splice(foundIndex, 1)
+  }
+}
+
 const init = () => {
   const osjs = new Core(config, {});
-
+    removeMountpoint(osjs, 'home')
+    removeMountpoint(osjs, 'osjs')
   // Register your service providers
   osjs.register(CoreServiceProvider);
   osjs.register(DesktopServiceProvider);
