@@ -39,12 +39,13 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/osjs'
     steps:
+      - uses: actions/checkout@v2
       - name: Load saved build output
         uses: actions/download-artifact@v1
         with:
           name: built-output
           path: ./dist
-      - name: Deploy the manifest JSON file
+      - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
