@@ -35,7 +35,7 @@
 //
 
 export default {
-  // standalone: true,
+  standalone: true,
   auth: {
     login: {
       username: 'demo',
