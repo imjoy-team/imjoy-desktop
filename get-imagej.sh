@@ -18,5 +18,5 @@ rm imagej-js-dist.tgz
 
 mkdir -p dist
 
-cp -a imagej-js-dist/. dist/imagej/
+cp -a imagej-js-dist/. dist/apps/imagej/
 rm -rf imagej-js-dist
