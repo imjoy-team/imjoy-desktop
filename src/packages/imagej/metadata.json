@@ -1,6 +1,6 @@
 {
   "type": "application",
-  "name": "ImageJ.JS",
+  "name": "imagej",
   "category": null,
   "icon": "https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png",
   "singleton": true,

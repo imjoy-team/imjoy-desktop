@@ -121,15 +121,14 @@ const init = () => {
   
       // const pkgs = new Packages(osjs);
       pm.addPackages([metadata]);
-      pm.register(name, () => {
+      pm.register(name, async () => {
         const proc = new Application(osjs, {
           args: {},
           metadata
         });
-        imjoy.api.createWindow({
-          src: 'https://kaibu.org',
-          name: "Kaibu"
-        })
+        const viewer = await imjoy.api.createWindow({src: "https://kaibu.org/#/app", name: "Kaibu"})
+        await viewer.view_image("https://images.proteinatlas.org/61448/1319_C10_2_blue_red_green.jpg")
+        await viewer.add_shapes([], {name: "Annotation"})
 
         return proc
       });

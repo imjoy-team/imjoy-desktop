@@ -196,7 +196,7 @@ textarea {
 
 #cheerpjDisplay > div.bordered {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3) !important;
-  border-radius: 4px 4px 0px 0px;
+  border-radius: 4px;
 }
 
 #cheerpjDisplay > div.window:hover {
@@ -204,7 +204,7 @@ textarea {
 }
 
 #cheerpjDisplay > div.window > canvas {
-  border-radius: 4px 4px 0px 0px;
+  border-radius: 4px;
 }
 
 .cjScrollbarButton {

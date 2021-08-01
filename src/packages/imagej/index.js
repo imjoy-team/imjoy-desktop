@@ -49,7 +49,7 @@ const register = (core, args, options, metadata) => {
   function makeTray(onclick){
     const entry = core.make('osjs/tray', {
       title: 'ImageJ.JS',
-      icon: '/apps/ImageJ.JS/assets/icons/chrome/chrome-installprocess-128-128.png',
+      icon: '/apps/imagej/assets/icons/chrome/chrome-installprocess-128-128.png',
       onclick(){
         onclick()
         entry.destroy();

@@ -49,3 +49,11 @@ html {
 .osjs-window[data-focused=false]{
   opacity: 1!important;
 }
+
+.osjs-window-content>div{
+  border-radius: 0 0 4px 4px;
+}
+
+.osjs-window-content>div>iframe{
+  border-radius: 0 0 3px 3px;
+}
