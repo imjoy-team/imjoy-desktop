@@ -108,7 +108,7 @@ const init = () => {
         autostart: false,
         hidden: false,
         icon: null,
-        category: 'Science',
+        category: 'science',
         groups: [],
         title: {
           "en_EN": name
