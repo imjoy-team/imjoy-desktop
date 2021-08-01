@@ -9,11 +9,14 @@
     "prepublishOnly": "npm run test && rm ./dist/* && npm run build"
   },
   "dependencies": {
-    "a11y-dialog": "^7.1.0",
-    "node-snackbar": "^0.1.16"
+    "node-snackbar": "^0.1.16",
+    "lz-string": "^1.4.4",
+    "mobile-drag-drop": "^2.3.0-rc.2",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
-    "@osjs/dev-meta": "^2.0.0"
+    "@osjs/dev-meta": "^2.0.0",
+    "style-loader": "^0.18.1"
   },
   "eslintConfig": {
     "env": {

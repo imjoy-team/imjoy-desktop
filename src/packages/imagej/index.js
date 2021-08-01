@@ -23,7 +23,42 @@ const register = (core, args, options, metadata) => {
   //     // container.style.height = "100%";
   //     // container.style.width = "100%";
   //     $content.appendChild(container);
-      startImageJ(document.querySelector('.osjs-contents')).catch(console.error);
+  
+  function showDialog({title, buttons}){
+        // The window.render() callback
+    const callbackRender = ($content, dialogWindow, dialog) => {
+      $content.innerHTML = "Hello"
+    };
+
+  
+    core.make('osjs/dialogs')
+      .create({buttons: Object.keys(buttons),
+      window: {
+        title,
+        dimension: {width: 400, height: 400}
+      }}, ()=>{
+
+      }, (button)=>{
+        buttons[button]();
+      })
+      .render(callbackRender);
+
+  }
+  const container = document.querySelector('.osjs-contents');
+
+  function makeTray(onclick){
+    const entry = core.make('osjs/tray', {
+      title: 'ImageJ.JS',
+      icon: '/apps/ImageJ.JS/assets/icons/chrome/chrome-installprocess-128-128.png',
+      onclick(){
+        onclick()
+        entry.destroy();
+      },
+    });
+  }
+
+  
+  startImageJ(container, showDialog, makeTray).catch(console.error);
   //   });
 
   // Creates a new WebSocket connection (see server.js)

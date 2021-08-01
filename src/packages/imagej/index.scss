@@ -77,16 +77,16 @@ div.menuBar {
   max-width: 100% !important;
 }
 
-// .cheerpjLoading:before {
-//   background: url(assets/img/imagej-js-splash.jpg) no-repeat center !important;
-//   background-size: 300px !important;
-//   max-width: 300px !important;
-// }
+.cheerpjLoading:before {
+  background: url("https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png") no-repeat center !important;
+  background-size: 120px !important;
+  max-width: 300px !important;
+}
 
-// .container:not(.cheerpjLoading) {
-//   background: url(assets/img/imagej-js-imjoy.png) no-repeat center !important;
-//   background-size: 300px !important;
-// }
+.container:not(.cheerpjLoading) {
+  background: url("https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png") no-repeat center !important;
+  background-size: 120px !important;
+}
 
 div#cheerpjDisplay.status:after {
   outline: none !important;
@@ -97,7 +97,7 @@ div#cheerpjDisplay.status:after {
   border: 0px solid rgba(255, 255, 255, 0);
   border-radius: 5px;
   transform: translate(-50%, 0);
-  top: calc(50% + 165px);
+  top: calc(50% + 70px);
   color: #fdfdfd;
   left: 50%;
   font-size: 18px;
@@ -149,12 +149,21 @@ input[type="button"]:focus {
 }
 
 .titleBar > .closeButton {
-  padding-right: 15px;
-  color: white;
+  color: #5a5a5a;
+  float: right;
   font-weight: 700;
   font-family: monospace;
-  font-size: 24px;
+  font-size: 13px;
   line-height: 13px;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(102, 102, 102, 0.5);
+  color: transparent;
+  margin-right: 5px !important;
+  margin-top: 2px;
+  background: linear-gradient(180deg,#f9c435 0,#fdd675);
 }
 
 .titleBar {
@@ -400,7 +409,7 @@ dialog::backdrop {
   width: 80px;
   height: 80px;
   position: absolute;
-  top: calc(50% - 70px);
+  top: calc(50% + 30px);
   left: 50%;
   z-index: 9999;
   transform: translate(-50%, 0);

@@ -30,8 +30,8 @@ module.exports = {
       from: path.resolve(__dirname, 'assets'),
       to: path.resolve(__dirname, 'dist', 'assets')
     },{
-      from: path.resolve(__dirname, 'ij153'),
-      to: path.resolve(__dirname, 'dist', 'ij153')
+      from: path.resolve(__dirname, 'c.html'),
+      to: path.resolve(__dirname, 'dist', 'c.html')
     }]}),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -66,7 +66,11 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ]
   }
 };
