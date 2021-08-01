@@ -25,6 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: npm run package:discover
     - run: npm run build
     - name: Get compiled imagej.js
       run: bash get-imagej.sh
