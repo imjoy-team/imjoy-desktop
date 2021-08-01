@@ -3339,7 +3339,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: type, name, category, icon, singleton, title, description, files, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"type\":\"application\",\"name\":\"ImageJ.JS\",\"category\":\"Science\",\"icon\":\"https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png\",\"singleton\":true,\"title\":{\"en_EN\":\"ImageJ.JS\"},\"description\":{\"en_EN\":\"ImageJ in the browser for image analysis\"},\"files\":[\"https://cjrtnc.leaningtech.com/20201217_2/loader.js\",\"main.js\",\"main.css\",\"c.html\"]}");
+module.exports = JSON.parse("{\"type\":\"application\",\"name\":\"ImageJ.JS\",\"category\":\"science\",\"icon\":\"https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png\",\"singleton\":true,\"title\":{\"en_EN\":\"ImageJ.JS\"},\"description\":{\"en_EN\":\"ImageJ in the browser for image analysis\"},\"files\":[\"https://cjrtnc.leaningtech.com/20201217_2/loader.js\",\"main.js\",\"main.css\",\"c.html\"]}");
 
 /***/ }),
 
