@@ -365,7 +365,7 @@ window.ipfCreateIFrame = function () {
         // Dispatch pending loads
         for (var i = 0; i < q.length; i = (i + 1) | 0) q[i].send();
     };
-    ret.src = "/apps/imagej/c.html";
+    ret.src = "/apps/ImageJ.JS/c.html";
     ret.width = "0px";
     ret.height = "0px";
     ret.style.border = "0px";
@@ -480,7 +480,7 @@ export async function startImageJ(appContainer, showDialog, makeTray) {
         javaProperties: [
             "java.protocol.handler.pkgs=com.leaningtech.handlers",
             "user.dir=/files",
-            "plugins.dir=/app/apps/imagej/ij153/plugins"
+            "plugins.dir=/app/apps/ImageJ.JS/ij153/plugins"
         ]
     });
 
@@ -555,7 +555,7 @@ export async function startImageJ(appContainer, showDialog, makeTray) {
 
     cheerpjRunMain(
         "ij.ImageJ",
-        "/app/apps/imagej/ij153/ij-1.53j.jar"
+        "/app/apps/ImageJ.JS/ij153/ij-1.53j.jar"
     );
     setupDragDropPaste(appContainer);
 

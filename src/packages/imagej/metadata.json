@@ -1,7 +1,7 @@
 {
   "type": "application",
-  "name": "imagej",
-  "category": null,
+  "name": "ImageJ.JS",
+  "category": "Science",
   "icon": "https://ij.imjoy.io/assets/icons/chrome/chrome-installprocess-128-128.png",
   "singleton": true,
   "title": {
