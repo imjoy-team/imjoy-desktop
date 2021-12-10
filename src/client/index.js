@@ -65,14 +65,14 @@ function removeMountpoint(core, name) {
   }
 }
 
-function registerApp(pm, { name, category, singleton = false, run }) {
+function registerApp(osjs, { name, category, icon = null, singleton = false, run }) {
   const metadata = {
     name,
     type: 'application',
     singleton: singleton,
     autostart: false,
     hidden: false,
-    icon: null,
+    icon,
     category,
     groups: [],
     title: {
@@ -84,9 +84,17 @@ function registerApp(pm, { name, category, singleton = false, run }) {
     },
   };
 
+  const pm = osjs.make('osjs/packages');
   // const pkgs = new Packages(osjs);
   pm.addPackages([metadata]);
-  pm.register(name, run);
+  pm.register(name, async () => {
+    const proc = new Application(osjs, {
+      args: {},
+      metadata
+    });
+    await run(metadata)
+    return proc
+  });
 }
 
 const init = () => {
@@ -105,7 +113,6 @@ const init = () => {
   osjs.register(GUIServiceProvider);
 
   osjs.boot().then(() => {
-    const pm = osjs.make('osjs/packages');
     const imjoy = new imjoyCore.ImJoy({
       imjoy_api: {},
       //imjoy config
@@ -132,7 +139,7 @@ const init = () => {
       })
 
       console.log('ImJoy started');
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "Kaibu", category: "science", async run() {
           const viewer = await imjoy.api.createWindow({ src: "https://kaibu.org/#/app", name: "Kaibu" })
           await viewer.view_image("https://images.proteinatlas.org/61448/1319_C10_2_blue_red_green.jpg")
@@ -140,37 +147,37 @@ const init = () => {
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "JupyterLite", category: "science", async run() {
           await imjoy.api.createWindow({ src: "https://jupyter.imjoy.io", name: "JupyterLite", passive: true })
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "Code", category: "science", async run() {
           await imjoy.api.createWindow({ src: "https://vscode.dev", name: "Code", passive: true })
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "elFinder", category: "science", async run() {
           await imjoy.api.createWindow({ src: "https://fm.imjoy.io", name: "elFinder" })
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "ImJoy Slides", category: "science", async run() {
           await imjoy.api.createWindow({ src: "https://slides.imjoy.io", name: "ImJoy Slides" })
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "ImJoy Chart", category: "science", async run() {
           await imjoy.api.createWindow({ src: "https://chart.imjoy.io", name: "ImJoy Chart" })
         }
       })
 
-      registerApp(pm, {
+      registerApp(osjs, {
         name: "HPA UMAP Studio", category: "science", async run() {
           const editor = await imjoy.api.createWindow({
             src: 'https://chart.imjoy.io',
