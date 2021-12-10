@@ -154,13 +154,13 @@ const init = () => {
       })
 
       registerApp(osjs, {
-        name: "Code", category: "science", async run() {
-          await imjoy.api.createWindow({ src: "https://vscode.dev", name: "Code", passive: true })
+        name: "Visual Studio Code", category: "development", async run() {
+          await imjoy.api.createWindow({ src: "https://vscode.dev", name: "Visual Studio Code", passive: true })
         }
       })
 
       registerApp(osjs, {
-        name: "elFinder", category: "science", async run() {
+        name: "elFinder", category: "utilities", async run() {
           await imjoy.api.createWindow({ src: "https://fm.imjoy.io", name: "elFinder" })
         }
       })
