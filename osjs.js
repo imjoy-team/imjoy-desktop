@@ -481,8 +481,8 @@ var init = function init() {
                 }
               });
               registerApp(osjs, {
-                name: "Code",
-                category: "science",
+                name: "Visual Studio Code",
+                category: "development",
                 run: function run() {
                   return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee5() {
                     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee5$(_context5) {
@@ -492,7 +492,7 @@ var init = function init() {
                             _context5.next = 2;
                             return imjoy.api.createWindow({
                               src: "https://vscode.dev",
-                              name: "Code",
+                              name: "Visual Studio Code",
                               passive: true
                             });
 
@@ -507,7 +507,7 @@ var init = function init() {
               });
               registerApp(osjs, {
                 name: "elFinder",
-                category: "science",
+                category: "utilities",
                 run: function run() {
                   return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee6() {
                     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee6$(_context6) {
