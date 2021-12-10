@@ -299,6 +299,34 @@ function removeMountpoint(core, name) {
   }
 }
 
+function registerApp(pm, _ref) {
+  var name = _ref.name,
+      category = _ref.category,
+      _ref$singleton = _ref.singleton,
+      singleton = _ref$singleton === void 0 ? false : _ref$singleton,
+      run = _ref.run;
+  var metadata = {
+    name: name,
+    type: 'application',
+    singleton: singleton,
+    autostart: false,
+    hidden: false,
+    icon: null,
+    category: category,
+    groups: [],
+    title: {
+      "en_EN": name
+    },
+    // A map of localized descriptions
+    description: {
+      "en_EN": name
+    }
+  }; // const pkgs = new Packages(osjs);
+
+  pm.addPackages([metadata]);
+  pm.register(name, run);
+}
+
 var init = function init() {
   var osjs = new _osjs_client__WEBPACK_IMPORTED_MODULE_3__["Core"](_config_js__WEBPACK_IMPORTED_MODULE_8__["default"], {});
   removeMountpoint(osjs, 'home');
@@ -325,14 +353,13 @@ var init = function init() {
     });
     imjoy.start({
       workspace: 'default'
-    }).then( /*#__PURE__*/_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3() {
-      var name, metadata;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
+    }).then( /*#__PURE__*/_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee9() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
               imjoy.event_bus.on("add_window", /*#__PURE__*/function () {
-                var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(w) {
+                var _ref3 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(w) {
                   var win;
                   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
                     while (1) {
@@ -364,74 +391,206 @@ var init = function init() {
                 }));
 
                 return function (_x) {
-                  return _ref2.apply(this, arguments);
+                  return _ref3.apply(this, arguments);
                 };
               }());
               console.log('ImJoy started');
-              name = 'Kaibu';
-              metadata = {
-                name: name,
-                type: 'application',
-                singleton: false,
-                autostart: false,
-                hidden: false,
-                icon: null,
-                category: 'science',
-                groups: [],
-                title: {
-                  "en_EN": name
-                },
-                // A map of localized descriptions
-                description: {
-                  "en_EN": name
+              registerApp(pm, {
+                name: "Kaibu",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
+                    var viewer;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            _context2.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://kaibu.org/#/app",
+                              name: "Kaibu"
+                            });
+
+                          case 2:
+                            viewer = _context2.sent;
+                            _context2.next = 5;
+                            return viewer.view_image("https://images.proteinatlas.org/61448/1319_C10_2_blue_red_green.jpg");
+
+                          case 5:
+                            _context2.next = 7;
+                            return viewer.add_shapes([], {
+                              name: "Annotation"
+                            });
+
+                          case 7:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }))();
                 }
-              }; // const pkgs = new Packages(osjs);
+              });
+              registerApp(pm, {
+                name: "JupyterLite",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
+                      while (1) {
+                        switch (_context3.prev = _context3.next) {
+                          case 0:
+                            _context3.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://jupyter.imjoy.io",
+                              name: "JupyterLite",
+                              passive: true
+                            });
 
-              pm.addPackages([metadata]);
-              pm.register(name, /*#__PURE__*/_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
-                var proc, viewer;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
-                  while (1) {
-                    switch (_context2.prev = _context2.next) {
-                      case 0:
-                        proc = new _osjs_client__WEBPACK_IMPORTED_MODULE_3__["Application"](osjs, {
-                          args: {},
-                          metadata: metadata
-                        });
-                        _context2.next = 3;
-                        return imjoy.api.createWindow({
-                          src: "https://kaibu.org/#/app",
-                          name: "Kaibu"
-                        });
+                          case 2:
+                          case "end":
+                            return _context3.stop();
+                        }
+                      }
+                    }, _callee3);
+                  }))();
+                }
+              });
+              registerApp(pm, {
+                name: "Code",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee4() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee4$(_context4) {
+                      while (1) {
+                        switch (_context4.prev = _context4.next) {
+                          case 0:
+                            _context4.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://vscode.dev",
+                              name: "Code",
+                              passive: true
+                            });
 
-                      case 3:
-                        viewer = _context2.sent;
-                        _context2.next = 6;
-                        return viewer.view_image("https://images.proteinatlas.org/61448/1319_C10_2_blue_red_green.jpg");
+                          case 2:
+                          case "end":
+                            return _context4.stop();
+                        }
+                      }
+                    }, _callee4);
+                  }))();
+                }
+              });
+              registerApp(pm, {
+                name: "elFinder",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee5() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee5$(_context5) {
+                      while (1) {
+                        switch (_context5.prev = _context5.next) {
+                          case 0:
+                            _context5.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://fm.imjoy.io",
+                              name: "elFinder"
+                            });
 
-                      case 6:
-                        _context2.next = 8;
-                        return viewer.add_shapes([], {
-                          name: "Annotation"
-                        });
+                          case 2:
+                          case "end":
+                            return _context5.stop();
+                        }
+                      }
+                    }, _callee5);
+                  }))();
+                }
+              });
+              registerApp(pm, {
+                name: "ImJoy Slides",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee6() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee6$(_context6) {
+                      while (1) {
+                        switch (_context6.prev = _context6.next) {
+                          case 0:
+                            _context6.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://slides.imjoy.io",
+                              name: "ImJoy Slides"
+                            });
 
-                      case 8:
-                        return _context2.abrupt("return", proc);
+                          case 2:
+                          case "end":
+                            return _context6.stop();
+                        }
+                      }
+                    }, _callee6);
+                  }))();
+                }
+              });
+              registerApp(pm, {
+                name: "ImJoy Chart",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee7() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee7$(_context7) {
+                      while (1) {
+                        switch (_context7.prev = _context7.next) {
+                          case 0:
+                            _context7.next = 2;
+                            return imjoy.api.createWindow({
+                              src: "https://chart.imjoy.io",
+                              name: "ImJoy Chart"
+                            });
 
-                      case 9:
-                      case "end":
-                        return _context2.stop();
-                    }
-                  }
-                }, _callee2);
-              })));
+                          case 2:
+                          case "end":
+                            return _context7.stop();
+                        }
+                      }
+                    }, _callee7);
+                  }))();
+                }
+              });
+              registerApp(pm, {
+                name: "HPA UMAP Studio",
+                category: "science",
+                run: function run() {
+                  return _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee8() {
+                    var editor;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee8$(_context8) {
+                      while (1) {
+                        switch (_context8.prev = _context8.next) {
+                          case 0:
+                            _context8.next = 2;
+                            return imjoy.api.createWindow({
+                              src: 'https://chart.imjoy.io',
+                              name: 'HPA UMAP Studio',
+                              fullscreen: true
+                            });
 
-            case 6:
+                          case 2:
+                            editor = _context8.sent;
+                            _context8.next = 5;
+                            return editor.loadDataSource("https://dl.dropbox.com/s/k9ekd4ff3fyjbfk/umap_results_fit_all_transform_all_sorted_20190422.csv");
+
+                          case 5:
+                          case "end":
+                            return _context8.stop();
+                        }
+                      }
+                    }, _callee8);
+                  }))();
+                }
+              });
+
+            case 9:
             case "end":
-              return _context3.stop();
+              return _context9.stop();
           }
         }
-      }, _callee3);
+      }, _callee9);
     })));
   });
 };
