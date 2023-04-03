@@ -1,5 +1,7 @@
 {
   "name": "imagej",
+  "version": "0.5.7",
+  "description": "ImageJ running in the browser",
   "scripts": {
     "test": "npm run eslint && npm run stylelint",
     "build": "webpack",
@@ -9,10 +11,15 @@
     "prepublishOnly": "npm run test && rm ./dist/* && npm run build"
   },
   "dependencies": {
-    "node-snackbar": "^0.1.16",
+    "a11y-dialog": "^5.3.2",
+    "imjoy-core": "^0.14.4",
+    "imjoy-rpc": "^0.5.13",
     "lz-string": "^1.4.4",
     "mobile-drag-drop": "^2.3.0-rc.2",
-    "qrcode": "^1.4.4"
+    "node-snackbar": "^0.1.16",
+    "qrcode": "^1.4.4",
+    "vue": "^2.5.17",
+    "vue-js-modal": "github:imjoy-team/vue-js-modal#2.0.0-rc.3g"
   },
   "devDependencies": {
     "@osjs/dev-meta": "^2.0.0",

@@ -96,3 +96,18 @@ npm run build
 # Start serving
 npm run serve
 ```
+
+
+To build ImageJ:
+```
+cd src/packages/imagej 
+npm install
+npm run build
+```
+
+To discover the imagej package
+```
+cd ../../../
+sh get-imagej.sh
+npm run package:discover
+```

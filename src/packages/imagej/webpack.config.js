@@ -19,6 +19,9 @@ module.exports = {
   mode,
   devtool: 'source-map',
   entry: path.resolve(__dirname, 'index.js'),
+  output: {
+    publicPath: "/apps/ImageJ.JS/",
+  },
   externals: {
     osjs: 'OSjs'
   },
